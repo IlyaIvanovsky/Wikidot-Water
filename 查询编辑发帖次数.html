@@ -1,0 +1,65 @@
+<html>
+<head>
+<style>
+body {
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: .9em;
+}
+</style>
+
+<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
+<script type="text/javascript">
+async function getxjoch(username, userId) {
+    await $.ajax({
+      url: "https://zh.xjo.ch/wd/userinfo",
+      crossDomain: true,
+      dataType: 'json',
+      timeout: 114514,
+      data: {username: username, userId: userId},
+      success: function( res ) {
+        if (res.data!==null) {
+          $('#content').html(`<p>Total revisions: ${res.data.revisions}</p>
+<p>Total forum posts: ${res.data.posts}</p>`);
+        } else {
+          $('#content').html(`Error: ${res.message}`);
+        }
+      },
+      error: function(a,b,c) {
+        $("#content").html(`Error occurred: ${JSON.stringify(a)}
+Please check developer tools console logs for more info.`);
+      }
+    })
+  }
+
+function getinfo() {
+  var username = null, userId = null;
+  if (!!UID.value.trim()) { userId = UID.value.trim() }
+  if (!!UName.value.trim()) { username = UName.value.trim() }
+  if (!username&&!userId) {
+    return $('#content').text(`Please specify user.`);
+  }
+  $('#content').text(`正在查询数据。如果该用户非常活跃，可能花费较长时间。`);
+  getxjoch(username, userId);
+}
+
+$(function(){
+   
+   $('#refresh').html(`
+<p>输入Wikidot用户名：<input type="text" id="UName" value="" style="display: inline-block; width: 30%;" /><br/>
+或者输入用户数字ID：<input type="text" id="UID" value="" style="width: 30%;" /></p>
+<p><input type="button" value="查询" onclick="getinfo()" /></p>`);
+
+var UName = document.getElementById("UName");
+var UID = document.getElementById("UID");
+
+});
+</script>
+
+</head>
+<body>
+<div id="refresh">jQuery is loading...</div>
+<div id="content"></div>
+
+</body>
+</html>
