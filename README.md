@@ -1,4 +1,5 @@
 # Wikidot-Water
+**简体中文** [https://github.com/IlyaIvanovsky/Wikidot-Water/blob/main/README-zh-tr.md 繁體中文] [https://github.com/IlyaIvanovsky/Wikidot-Water/blob/main/README-en.md English] [https://github.com/IlyaIvanovsky/Wikidot-Water/blob/main/README-ru.md Русский] [https://github.com/IlyaIvanovsky/Wikidot-Water/blob/main/README-jp.md 日本語]
 Wikidot水帖脚本，让你快速上5k
 
 使用方法：在浏览器安装油猴插件，然后添加脚本（复制代码），进入Wikidot会自动开始水帖。
